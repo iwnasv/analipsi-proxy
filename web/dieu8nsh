@@ -1,0 +1,1 @@
+In this file, the reverse proxy resolves its own public IP and it's hosted here to cross-check with the proxied server for additional safety against DNS attacks

@@ -1,0 +1,66 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	location / {
+		return 301 https://$host$request_uri;
+	}
+}
+server {
+	if ($is_gr = no) { #like I said in the README, this is a GeoIP filter I put in nginx' main config to filter non-greek connections
+		return 418;
+	}
+	error_page 404 /404.html;
+
+	# SSL configuration
+	#
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+	ssl_certificate /etc/letsencrypt/live/analipsi.online/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/analipsi.online/privkey.pem;
+	ssl_session_timeout 1d;
+	ssl_session_cache shared:MozSSL:10m;
+	ssl_session_tickets off;
+	ssl_protocols TLSv1.3;
+	ssl_prefer_server_ciphers off;
+	add_header Strict-Transport-Security "max-age=63072000" always;
+	ssl_stapling on;
+	ssl_stapling_verify on;
+	resolver 1.1.1.1;
+	proxy_ssl_session_reuse off; #gia to ssl
+	proxy_ssl_server_name on;
+	proxy_set_header Host example.com;
+	proxy_set_header Cookie "proxy=true";
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index /index.php;
+	#index /404.html index.html index.htm index.nginx-debian.html;
+
+	server_name analipsi.online;
+	location / {
+		try_files $uri $uri/ =404;
+		if ($cookie_secret = 'example') {
+			set $homeserver example.com;
+			#auto xreiazetai na ginei gia na kanei resolve to domain
+			proxy_pass https://$homeserver:443;
+		}
+	}
+	# pass PHP scripts to FastCGI server
+	#
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+	#
+	#	# With php-fpm (or other unix sockets):
+		fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+	#	# With php-cgi (or other tcp sockets):
+	#	fastcgi_pass 127.0.0.1:9000;
+	}
+
+	# deny access to .htaccess files, if Apache's document root
+	# concurs with nginx's one
+	#
+	#location ~ /\.ht {
+	#	deny all;
+	#}
+}
