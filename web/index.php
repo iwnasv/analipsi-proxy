@@ -2,12 +2,11 @@
 <html lang="en"><?php
 $pw = hash('sha256', filter_input(INPUT_GET, 'password'));
 $secret = 'dd2fa408297d5b01412181852d5b526b1e45d015c57074a257057c23b2ab04bb'; //not the hash used in production...
-$authed = false;
 $cookey = 'είναι λογοπαίγνιο, cookie + key χεχε';
-if($pw == $secret) {
+$authed = ($pw == $secret);
+if($authed) {
   $A = 'Καλωσήρθες,';
   $B = 'Ιωνάρα';
-  $authed = true;
   setcookie('iwnaras',$cookey,strtotime('+1 month'),'/','analipsi.online',true,true);
 } else {
   $A = 'Ανάληψη';
