@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><?php
+<?php
 $pw = hash('sha256', filter_input(INPUT_GET, 'password'));
 $secret = 'dd2fa408297d5b01412181852d5b526b1e45d015c57074a257057c23b2ab04bb'; //not the hash used in production...
 $cookey = 'είναι λογοπαίγνιο, cookie + key χεχε';
@@ -12,7 +11,10 @@ if($authed) {
   $A = 'Ανάληψη';
   $B = 'ονλάιν';
 }
+include('../analytics.php');
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="author" content="admin">
