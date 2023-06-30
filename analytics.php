@@ -9,7 +9,10 @@ $analytics_db = './analytics.db';
 $timeframe = '-1 hour';
 $max_connections = 3;
 
-if ($referer && $ip) {
+if ($ip) {
+    if (empty($referer)) {
+        $referer = 'None';
+    }
     $db = new SQLite3($analytics_db);
     $referer = $db->escapeString($referer);
     $ip = $db->escapeString($ip);
