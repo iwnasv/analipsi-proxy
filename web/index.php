@@ -1,4 +1,8 @@
 <?php
+$analytics_db = '../analytics.db';
+$db = new SQLite3($analytics_db); // the project's getting bigger, might want to consider a better structure before it's too late
+include('../analytics.php');
+include('../announcements.php');
 $pw = hash('sha256', filter_input(INPUT_GET, 'password'));
 $secret = 'dd2fa408297d5b01412181852d5b526b1e45d015c57074a257057c23b2ab04bb'; //not the hash used in production...
 $cookey = 'είναι λογοπαίγνιο, cookie + key χεχε';
@@ -7,14 +11,17 @@ if($authed) {
   $A = 'Καλωσήρθες,';
   $B = 'Ιωνάρα';
   setcookie('iwnaras',$cookey,strtotime('+1 month'),'/','analipsi.online',true,true);
+  // update last online status
+  $currentTimestamp = time();
+  $query = "UPDATE iwnaras SET last_online = ?";
+  $statement = $dbConnection->prepare($query);
+  $statement->bind_param("i", $currentTimestamp);
+  $statement->execute();
+  $statement->close();
 } else {
   $A = 'Ανάληψη';
   $B = 'ονλάιν';
 }
-$analytics_db = '../analytics.db';
-$db = new SQLite3($analytics_db); // the project's getting bigger, might want to consider a better structure before it's too late
-include('../analytics.php');
-include('../announcements.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +50,13 @@ body h1 {
 }
 h3 {
   margin-top: 0;
+}
+footer {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  font-style: italic;
+  font-size: 100%;
 }
 </style>
 </head>
@@ -85,4 +99,9 @@ for (i = 0; i < increaseThese.length; i++) {
 }
 </script>
 </body>
+<footer>
+<p>Ιωνάρας, 2022 - <?= date("Y") ?>
+
+Τελεταία εμφάνιση: <?= $last_online ?></p>
+</footer>
 </html>

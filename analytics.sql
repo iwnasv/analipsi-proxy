@@ -10,5 +10,5 @@ CREATE TABLE announcements (
     hidden BOOLEAN
 );
 CREATE TABLE iwnaras (
-    last_online DATETIME
+    last_online DATETIME DEFAULT '1998-04-17 15:15'
 );
