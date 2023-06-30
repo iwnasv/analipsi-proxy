@@ -12,7 +12,9 @@ if($authed) {
   $B = 'ονλάιν';
 }
 $analytics_db = '../analytics.db';
+$db = new SQLite3($analytics_db); // the project's getting bigger, might want to consider a better structure before it's too late
 include('../analytics.php');
+include('../announcements.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">

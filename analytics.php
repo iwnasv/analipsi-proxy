@@ -12,7 +12,6 @@ if ($ip) {
     if (empty($referer)) {
         $referer = 'None';
     }
-    $db = new SQLite3($analytics_db);
     $referer = $db->escapeString($referer);
     $ip = $db->escapeString($ip);
     $current_time = date('Y-m-d H:i:s');
