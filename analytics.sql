@@ -1,5 +1,4 @@
 CREATE TABLE analytics (
-    id INTEGER PRIMARY KEY,
     referer TEXT,
     ip TEXT,
     timestamp DATETIME
