@@ -11,6 +11,7 @@ if($authed) {
   $A = 'Ανάληψη';
   $B = 'ονλάιν';
 }
+$analytics_db = '../analytics.db';
 include('../analytics.php');
 ?>
 <!DOCTYPE html>

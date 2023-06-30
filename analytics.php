@@ -3,7 +3,6 @@
 // just log the client's IP, referer, and request time
 $referer = filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_SPECIAL_CHARS);
 $ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
-$analytics_db = '../analytics.db';
 
 // behavior similar to fail2ban
 $timeframe = '-1 hour';
