@@ -5,7 +5,6 @@ $result = $db->querySingle($query);
 if ($result) {
     $last_online = $result;
 }
-$db->close();
 
 function formatTimeUnits($value, $singular, $plural)
 {

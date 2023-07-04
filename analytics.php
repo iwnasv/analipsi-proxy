@@ -27,8 +27,6 @@ if ($ip) {
         header('Location: https://www.google.com');
         exit;
     }
-
-    $db->close();
 }
 
 ?>

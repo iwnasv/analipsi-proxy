@@ -22,6 +22,7 @@ if($authed) {
   $A = 'Ανάληψη';
   $B = 'ονλάιν';
 }
+$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

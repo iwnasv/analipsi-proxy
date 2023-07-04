@@ -11,6 +11,4 @@ if ($results) {
         </div> <?php
     }
 }
-
-$db->close();
 ?>
