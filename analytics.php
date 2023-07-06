@@ -23,8 +23,7 @@ if ($ip) {
     $times_connected = $db->querySingle($query);
 
     if ($times_connected > $max_connections) {
-        header('HTTP/1.1 301 Moved Permanently');
-        header('Location: https://www.google.com');
+        http_response_code(429);
         exit;
     }
 }
