@@ -15,7 +15,7 @@ if($authed) {
   $currentTimestamp = time();
   $query = "UPDATE iwnaras SET last_online = ?";
   $statement = $dbConnection->prepare($query);
-  $statement->bind_param("i", $currentTimestamp);
+  $statement->bind_param("s", $currentTimestamp);
   $statement->execute();
   $statement->close();
 } else {
