@@ -24,6 +24,7 @@ if ($ip) {
 
     if ($times_connected > $max_connections) {
         http_response_code(429);
+        $db->close();
         exit;
     }
 }
