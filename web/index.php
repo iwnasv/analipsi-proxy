@@ -57,11 +57,12 @@ footer {
   bottom: 3px;
   right: 3px;
   font-style: italic;
-  font-size: 100%;
+  font-size: 50%;
 }
 </style>
 </head>
 <body>
+<main>
 <h1><?= $A ?></h1>
 <h3><?= $B ?></h3>
 <img src="/index.png">
@@ -72,6 +73,7 @@ footer {
 <span class="inc" value="22">0</span><span>° </span>
 <span class="inc" value="57">0</span><span>' </span>
 <span class="inc" value="10.1">0</span><span>"E</span>
+</main>
 <?php if($authed) : ?>
 <p>Ορίστε το μπισκότο σας, καλά να περάσετε.</p>
 <?php endif ?>
@@ -103,6 +105,6 @@ for (i = 0; i < increaseThese.length; i++) {
 <footer>
 <p>Ιωνάρας, 2022 - <?= date("Y") ?>
 
-Τελεταία εμφάνιση: <?= $last_online ?></p>
+<!--Τελεταία εμφάνιση: <?= $last_online ?>--></p>
 </footer>
 </html>
