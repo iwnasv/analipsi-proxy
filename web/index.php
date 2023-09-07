@@ -60,6 +60,11 @@ footer {
   font-style: italic;
   font-size: 50%;
 }
+@media only screen and (max-width: 800px) {
+  body {
+    width: 99%;
+  }
+}
 </style>
 </head>
 <body>
