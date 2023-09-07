@@ -83,6 +83,9 @@ footer {
 <?php if($authed) : ?>
 <p>Ορίστε το μπισκότο σας, καλά να περάσετε.</p>
 <?php endif ?>
+<?php if($_SERVER['HTTP_REFERER'] == "https://l.instagram.com/") : ?>
+<p>στην ανάμνηση της παλιάς μου γειτονιάς</p>
+<?php endif ?>
 <script>
 function animateInc(span) {
   let goal = span.getAttribute('value');
@@ -109,8 +112,7 @@ for (i = 0; i < increaseThese.length; i++) {
 </script>
 </body>
 <footer>
-<p>Ιωνάρας, 2022 - <?= date("Y") ?>
-
+<p>Ιωνάρας, 2022 - <?= date("Y") ?><br>
 <!--Τελεταία εμφάνιση: <?= $last_online ?>--></p>
 </footer>
 </html>
